@@ -1,0 +1,27 @@
+setcps $ 120/60/2
+
+let stutPat = ("0 0.125 0 0.125 0 0.125 0 0.125" ~>)
+
+let shuf = ("[0 0.05 0 0.05] [0 0.05 0 0.05]" ~>)
+
+let stutPat1 = shuf $ gain "[~ 1 ~ 1] ~ 1 ~ 1"
+
+let stutPat2 = palindrome $ shuf $ gain "~ 1 ~ 1 ~ 1 ~ 1"
+
+let chorded notes offset = foldl (\f n-> f . (superimpose ((offset <~) . (|+ up n)))) id notes
+
+:t foldl
+
+hush
+
+d1 $ s "kick*2" # n 8
+
+d3 $ stut 2 0.05 0.125 $ s "~ tamb ~ tamb" # n 1 # bpf 3000
+
+
+d4 $ s "~ snare:14"
+
+d5 $ s "~ hat ~ hat" # n 22
+
+
+d2 $ (# pan rand) $ chorded [0, "<11 12 11 12 11 14>", "<7 7>", "<~ ~ 24>"] (slow 5 $ range 0.005 0.001 sine) $ s "orgpho(<3 4>, 4)" # legato 1 # delay 0.5 # delaytime "<0.33 0.66>/2" # delayfeedback 0.33 |* jux rev (speed "[2 4]") |+ up "-3" # n "0" # begin 0.01 # lpf (slow 8 $ range 500 8000 sine) # resonance 0.1 # gain 0.7 # crush (slow 11 $ range 2 16 $ rev $ saw)
