@@ -1,0 +1,23 @@
+setcps $ 120/60/2
+
+let stutPat = ("0 0.125 0 0.125 0 0.125 0 0.125" ~>)
+
+let shuf = ("[0 0.05 0 0.05] [0 0.05 0 0.05]" ~>)
+
+let stutPat1 = shuf $ gain "[~ 1 ~ 1] ~ 1 ~ 1"
+
+let stutPat2 = palindrome $ shuf $ gain "~ 1 ~ 1 ~ 1 ~ 1"
+
+d1 $ whenmod 3 1 (# coarse 20) $ s "bass:37*4" # begin 0.03 # lpf (slow 7 $ range 300 1000 sine) # resonance 0.1 |+ up "<0 -3 4 4>/4" |+ jux rev (up "-12 0 -12 0") # sustain 1 # gain 0.7 # delay (slow 8 $ range 0 0.5 $ saw * saw) # delayfeedback 0.2 # delaytime 0.66 # shape (slow 11 $ range 0 0.3 sine)
+
+d2 $ s "kick:8*2" # gain "1" # end 0.5
+
+d3 $ stutPat # s "hat" # n "22" # end 0.1 # speed 0.95 # gain (slow 3 $ range 0.6 0.7 saw) # bpf 4500
+
+d4 $ s "~ hat ~ hat" # n "22" # end 0.2
+
+d5 $ slow 2 $ chop 2 $ s "feelfx" |* up "<[0,7] [-3,4]>/8" |* speed "[<1 ~ ~ ~ ~>,-1, -0.5]" # sustain 3 # bpf "5000" |* speed 0.5 # delay 0.5 # delayfeedback 0.5 # delaytime  "<0.5 0.66>" # end (slow 8 $ range 1 0.5 saw) # room 0.3 # size 0.8
+
+d6 $ jux (#speed "1.05") $ s "~ [sn:2,clap:12/2]" # bpf 3000
+
+d7 $ jux (|* speed "1.1") $ s "[~ ~ [hat/2]] ~ " # speed "-1" |+ n 17 # bpf "3000"
