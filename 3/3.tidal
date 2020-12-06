@@ -1,0 +1,43 @@
+setcps $ 120/60/2
+
+d1 $ sometimesBy 0.25 (# speed "[1,-2,-4,-8]") $ slow 2 $ chorded ["<5 5 5 5 7 [7] 7 7>", "<14 12 11 12 9>"] 0.02 $ s "orgpho" # legato 2 # n "1" # begin 0.05 |* speed "[<-1 ~>,1]" # delay 0.5 # delayfeedback 0.33 # delaytime "<0.6 0.8>" # orbit 1 # room 0.4 # size 0.8
+
+d2 $ stack [
+  s "kick:7*2",
+  s "~ hat ~ hat" # n 7 # crush 4,
+  jux (# speed 1.1) $ s "~ clap:14" # gain 0.8 # crush 6,
+  palindrome $ s "[~ [hat/2 ~  hat] ~ [~ ~ hat]]" # n 7 # crush 6 # gain 0.8
+] # orbit 2 # delay 0 # delaytime 0.33 # delayfeedback 0.3
+
+let orgpho_3a = sometimesBy 0.25 (# speed "[1,-2,-4,-8]") $ slow 2 $ chorded ["<5 5 5 5 7 [7] 7 7>", "<14 12 11 12 9>"] 0.02 $ s "orgpho" # legato 2 # n "1" # begin 0.05 |* speed "[<-1 ~>,1]" # delay 0.5 # delayfeedback 0.33 # delaytime "<0.6 0.8>" # orbit 1 # room 0.4 # size 0.8
+
+let drums_3a = stack [ s "kick:7*2", s "~ hat ~ hat" # n 7 # crush 4, jux (# speed 1.1) $ s "~ clap:14" # gain 0.8 # crush 6, palindrome $ s "[~ [hat/2 ~  hat] ~ [~ ~ hat]]" # n 7 # crush 6 # gain 0.8] # orbit 2 # delay 0 # delaytime 0.33 # delayfeedback 0.3
+
+let voc_3a = sometimesBy 0.1 (|+ n "[0, 8]") $ s "voc*8" # end 0.50 # orbit 3 # n "255" # begin 0 # pan (range 0.125 0.875 rand) # lpf (slow 9 $ range 100 9000 sine) # hpf (slow 11 $ range 10 9000 sine) # orbit 3 # room 0.5 # size 0.9 # delay 0.5 # delaytime 0.6 # delayfeedback 0.33  # gain 0.8
+
+let day_3a = stack [orgpho_3a, drums_3a, voc_3a]
+
+
+--------------------------------------------------------------------------------
+--                                 3b                                         --
+--------------------------------------------------------------------------------
+
+d1 $ chorded [0,"[7,<~ 12>]"] (range 0.01 0.1 rand) $ slow 8 $ up "9 12 16 19 9 12 5 ~ 7/4 ~" # s "orgpho" # begin 0.11 # n 0 # sustain 3 # orbit 1 # room 0.2 # size 0.7 # delay 0.25 # delaytime "<0.66 0.66 0.66 1.2>" # delayfeedback 0.33
+
+d2 $ s "soulvoc*15" # attack 0.1 # release 0.1 # n "14" # begin (slow 64 $ range 0.15 0.55 sine) # gain (slow 9 $ range 0.6 0.95 sine) # orbit 2 # room 0.4 # size 0.8 # pan (range (0.25 ) 0.75 rand) # delay 0.2 # delaytime 0.66 # delayfeedback 0.3
+
+d3 $ stack [
+  s "kick:7*2" # orbit 5 # gain 0.9,
+  s "~ [hat] ~ hat" |* speed 0.625 # n "22" # bpf 1000,
+  s "~ [snare:10,clap:4]" # bpf "1500",
+  s "[~ [~ ~ hat/4]] [hat/2 [~ ~ hat/2]]" # n 22 # bpf 1000 # gain "~ 0.66 0.8 0.7" |* speed 0.6
+] # orbit 3 # coarse 3 |* speed 0.9 |* gain 0.95
+
+let orgpho_3b = chorded [0,"[7,<~ 12>]"] (range 0.01 0.1 rand) $ slow 8 $ up "9 12 16 19 9 12 5 ~ 7/4 ~" # s "orgpho" # begin 0.11 # n 0 # sustain 3 # orbit 1 # room 0.2 # size 0.7 # delay 0.25 # delaytime "<0.66 0.66 0.66 1.2>" # delayfeedback 0.33
+
+let voc_3b = s "soulvoc*15" # attack 0.1 # release 0.1 # n "14" # begin (slow 64 $ range 0.15 0.55 sine) # gain (slow 9 $ range 0.6 0.95 sine) # orbit 2 # room 0.4 # size 0.8 # pan (range (0.25 ) 0.75 rand) # delay 0.2 # delaytime 0.66 # delayfeedback 0.3
+
+let drums_3b =  stack [s "kick:7*2" # orbit 5 # gain 0.9, s "~ [hat] ~ hat" |* speed 0.625 # n "22" # bpf 1000, s "~ [snare:10,clap:4]" # bpf "1500", s "[~ [~ ~ hat/4]] [hat/2 [~ ~ hat/2]]" # n 22 # bpf 1000 # gain "~ 0.66 0.8 0.7" |* speed 0.6] # orbit 3 # coarse 3 |* speed 0.9 |* gain 0.95
+
+
+let day_3b = stack[orgpho_3b, voc_3b, drums_3b]

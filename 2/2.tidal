@@ -14,14 +14,36 @@ let chorded notes offset = foldl (\f n-> f . (superimpose ((offset <~) . (|+ up 
 
 hush
 
-d1 $ s "kick*2" # n 8
+d1 $ s "kick kick" # n "11"
 
-d3 $ stut 2 0.05 0.125 $ s "~ tamb ~ tamb" # n 1 # bpf 3000
+d3 $ (|* gain (range 0.7 0.95 rand)) $ jux (#speed 1.1) $ stut 2 0.05 0.125 $ s "~ tamb ~ tamb" # n 1 # bpf 5000 # legato 0.30
+
+d4 $ s "~ [snare:14, clap]"
+
+d5 $ s "~ hat ~ hat" # n 11 # gain 0.9 # speed 0.9
+
+d6 $ every 2 (linger 0.25) $ palindrome $ stutPat2 # s "hat" # n 11 |* gain "0.8 0.7" # speed 0.8
+
+d2 $ sometimesBy 0 (superimpose (|+ n "8")) $ (# pan rand) $ chorded [0, "<11 12 11 12 11 14>", "<7 7>", "<~ ~ 24>"] (slow 5 $ range 0.005 0.001 sine) $ s "orgpho(<3 4>, 4)" # legato 1 # delay 0.5 # delaytime "<0.33 0.66>/2" # delayfeedback 0.33 |* jux rev (speed "[2 4]") |+ up "-3" # n "0" # begin 0.01 # lpf (slow 8 $ range 500 8000 sine) # resonance 0.1 # gain 0.5 # crush (slow 11 $ range 2 16 $ rev $ saw) # room 0.3 # size 0.8
 
 
-d4 $ s "~ snare:14"
-
-d5 $ s "~ hat ~ hat" # n 22
+hush
 
 
-d2 $ (# pan rand) $ chorded [0, "<11 12 11 12 11 14>", "<7 7>", "<~ ~ 24>"] (slow 5 $ range 0.005 0.001 sine) $ s "orgpho(<3 4>, 4)" # legato 1 # delay 0.5 # delaytime "<0.33 0.66>/2" # delayfeedback 0.33 |* jux rev (speed "[2 4]") |+ up "-3" # n "0" # begin 0.01 # lpf (slow 8 $ range 500 8000 sine) # resonance 0.1 # gain 0.7 # crush (slow 11 $ range 2 16 $ rev $ saw)
+
+xfadeIn 1 32 $ stack
+  [
+  s "kick kick" # n "11",
+  (|* gain (range 0.7 0.95 rand)) $ jux (#speed 1.1) $ stut 2 0.05 0.125 $ s "~ tamb ~ tamb" # n 1 # bpf 5000 # legato 0.30 ,
+  s "~ [snare:14, clap]",
+  s "~ hat ~ hat" # n 11 # gain 0.9 # speed 0.9,
+  every 2 (linger 0.25) $ palindrome $ stutPat2 # s "hat" # n 11 |* gain "0.8 0.7" # speed 0.8
+] # orbit 1
+
+d2 $ sometimesBy 0 (superimpose (|+ n "8")) $ (# pan rand) $ chorded [0, "<11 12 11 12 11 14>", "<7 7>", "<~ ~ 24>"] (slow 5 $ range 0.005 0.001 sine) $ s "orgpho(<3 4>, 4)" # legato 1 # delay 0.5 # delaytime "<0.33 0.66>/2" # delayfeedback 0.33 |* jux rev (speed "[2 4]") |+ up "-3" # n "0" # begin 0.01 # lpf (slow 8 $ range 500 8000 sine) # resonance 0.1 # gain 0.5 # crush (slow 11 $ range 2 3 $ rev $ saw) # room 0.3 # size 0.8 # orbit 2 |* accelerate "-0"
+
+hush
+
+d1 $ s "kick"
+
+clutchIn 2 32 $ silence

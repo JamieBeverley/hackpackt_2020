@@ -1,0 +1,25 @@
+let major = [0,2,4,5,7,9,11,12]
+
+let dorian = fmap (\x -> x-2) [2,4,5,7,9,11,12,14]
+
+let phrygian = fmap (\x-> x-4) [4,5,7,9,11,12,14,16]
+
+let minor = [0,2,3,5,7,8,10,12]
+
+let minor_pent = [0,3,5,7,10,12]
+
+:t toScale
+
+hush
+
+d2 $ slow 2 $ brak $ s "808bd:1" # orbit 2 # cut 1
+
+d3 $ s "~ [clap:8]" # legato 0.25 # bpf 10000 # gain 0.9
+
+d4 $ s "hat ~ hat ~" # n 5 # bpf 3000 # gain 0.5 # speed "-0.5"
+
+
+d1 $ sometimes (off 0.75 (|+ up 24)) $ slow 2 $ up (toScale minor ("[~ 4/4 ~, <~ ~ 7 9 ~>] [<~ 0 ~ 0> 4/2] <0 0 ~>" + "<0 2 2 1>/2")) |* juxBy 0.5 rev (speed "[1 2]") #  s "[orgpho]" # coarse (slow 8 $ fmap round $ range 10 24 $ saw * saw) # delay 0.33 # delaytime "<0.33 0.33 0.33 <0.12 0.66>>" # delayfeedback 0.6 # orbit 1 # room 0.1 # size 0.9 # begin 0.01 # lpf (slow 8 $ range 500 2000 sine) # resonance 0.1 # sustain 1
+
+
+let day_4 = sometimes (off 0.75 (|+ up 24)) $ slow 2 $ up (toScale minor ("[~ 4/4 ~, <~ ~ 7 9 ~>] [<~ 0 ~ 0> 4/2] <0 0 ~>" + "<0 2 2 1>/2")) |* juxBy 0.5 rev (speed "[1 2]") #  s "[orgpho]" # coarse (slow 8 $ fmap round $ range 10 24 $ saw * saw) # delay 0.33 # delaytime "<0.33 0.33 0.33 <0.12 0.66>>" # delayfeedback 0.6 # orbit 1 # room 0.1 # size 0.9 # begin 0.01 # lpf (slow 8 $ range 500 2000 sine) # resonance 0.1 # sustain 1
