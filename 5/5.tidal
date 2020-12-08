@@ -1,0 +1,19 @@
+hush
+
+d1 $ s "[cr78:12*2?, cr78:11 cr78:10,kick:7*2]"
+
+d2 $ iter 2 $ s "~ cr78 ~ [cr78]" # rev (n "[[9,4] [9,4/2]]") # legato 0.5
+
+d3 $ jux (# speed 0.96)$ s "~ [cr78:9] [cr78:14, clap:14] ~" # legato 1 # gain 0.9
+
+d4 $ jux (# up 7) $ (|+ iter 4 (n "3 0 0 1 2")) $ palindrome $ n "~ [~ ~ 0] ~ [0 ~ 0]" # s "[cr78]" # orbit 4 # delay 0.2 # delayt 0.75 # delayfb 0.33 # phaserdepth 3 # phaserrate 3 # gain 0.9
+
+d5 $ chop 2 $ every 4 (superimpose  ((# s "soulvoc") . (stut 4 0.125 0.25) . (# release 1) . (# bpf (slow 19 $ range 1000 5000 sine)) . (# n 6))) $ s "spinPads*4" # up (toScale major $ "<0 -1 4 4>/8") # attack 0.1 # release 2 # begin (slow 25 $ range 0.4 0.5 sine) # room 0.3 # size 0.7 # orbit 5 # phaserrate 3 # phaserdepth 1
+
+
+
+
+
+
+
+ sometimes (superimpose ((# attack 0.01) . (|+ up (toScale major 15)) . (# pan rand) . (# release 0.1) . (fast 1)))
