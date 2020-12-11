@@ -1,0 +1,12 @@
+setcps 1
+
+d1 $ (# pan rand) $ chorded [0,"<24 ~ 7 ~>"] 0.025 $ stut 2 0.125 0.9 $ (dly 0.5 0.66 0.5) $ up (toScale minor_pent "[~ 0,<[~ 2] [~ ~ 4] 8 7 6 5 2 3 5>]") # s "[gmlnl,gmlnh:1]" # orbit 1 # begin 0 # legato 1 # gain "0.7" # room 0.2 # size 0.90
+
+d2 $ whenmod 32 24 (superimpose  ((# s "kurt:0") . (|+ begin (range (slow 8 saw * (-1)) 0.1 rand)) . (# n 0) . (# begin (slow 8 $ saw)) )) $ whenmod 30 22 ((# lpf "10000") .  (|+ n (slow 8 $ run 4))) $ whenmod 4 3 ((# n "7 4") . (degrade) . (# accelerate  "-0.1") . (# crush (range 16 2 saw)) . (# pan saw) . (# legato 1)) $ whenmod 5 2 (juxBy 0.5 (# speed 2)) $ whenmod 7 5 (# coarse (slow 4 $ fmap round $ range 0 14 sine)) $ whenmod 64 48 ((# s "cr78") . (# hpf 500)) $ s "drum*12" # n (whenmod 8 4 (linger 0.25) $ iter 4 $ run 8) # legato 1 # orbit 2 # lpf (fast 5 $ range 100 8000 sine)
+
+
+let day6 = fromList $ [("perc", whenmod 32 24 (superimpose  ((# s "kurt:0") . (|+ begin (range (slow 8 saw * (-1)) 0.1 rand)) . (# n 0) . (# begin (slow 8 $ saw)) )) $ whenmod 30 22 ((# lpf "10000") .  (|+ n (slow 8 $ run 4))) $ whenmod 4 3 ((# n "7 4") . (degrade) . (# accelerate  "-0.1") . (# crush (range 16 2 saw)) . (# pan saw) . (# legato 1)) $ whenmod 5 2 (juxBy 0.5 (# speed 2)) $ whenmod 7 5 (# coarse (slow 4 $ fmap round $ range 0 14 sine)) $ whenmod 64 48 ((# s "cr78") . (# hpf 500)) $ s "drum*12" # n (whenmod 8 4 (linger 0.25) $ iter 4 $ run 8) # legato 1 # orbit 2 # lpf (fast 5 $ range 100 8000 sine)), ("amb", (# pan rand) $ chorded [0,"<24 ~ 7 ~>"] 0.025 $ stut 2 0.125 0.9 $ (dly 0.5 0.66 0.5) $ up (toScale minor_pent "[~ 0,<[~ 2] [~ ~ 4] 8 7 6 5 2 3 5>]") # s "[gmlnl,gmlnh:1]" # orbit 1 # begin 0 # legato 1 # gain "0.7" # room 0.2 # size 0.90)]
+
+
+
+hush
