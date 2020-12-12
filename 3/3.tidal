@@ -22,6 +22,8 @@ let day_3a = stack [orgpho_3a, drums_3a, voc_3a]
 --                                 3b                                         --
 --------------------------------------------------------------------------------
 
+
+
 d1 $ chorded [0,"[7,<~ 12>]"] (range 0.01 0.1 rand) $ slow 8 $ up "9 12 16 19 9 12 5 ~ 7/4 ~" # s "orgpho" # begin 0.11 # n 0 # sustain 3 # orbit 1 # room 0.2 # size 0.7 # delay 0.25 # delaytime "<0.66 0.66 0.66 1.2>" # delayfeedback 0.33
 
 d2 $ s "soulvoc*15" # attack 0.1 # release 0.1 # n "14" # begin (slow 64 $ range 0.15 0.55 sine) # gain (slow 9 $ range 0.6 0.95 sine) # orbit 2 # room 0.4 # size 0.8 # pan (range (0.25 ) 0.75 rand) # delay 0.2 # delaytime 0.66 # delayfeedback 0.3
@@ -32,6 +34,18 @@ d3 $ stack [
   s "~ [snare:10,clap:4]" # bpf "1500",
   s "[~ [~ ~ hat/4]] [hat/2 [~ ~ hat/2]]" # n 22 # bpf 1000 # gain "~ 0.66 0.8 0.7" |* speed 0.6
 ] # orbit 3 # coarse 3 |* speed 0.9 |* gain 0.95
+
+
+
+
+
+
+
+
+
+
+
+
 
 let orgpho_3b = chorded [0,"[7,<~ 12>]"] (range 0.01 0.1 rand) $ slow 8 $ up "9 12 16 19 9 12 5 ~ 7/4 ~" # s "orgpho" # begin 0.11 # n 0 # sustain 3 # orbit 1 # room 0.2 # size 0.7 # delay 0.25 # delaytime "<0.66 0.66 0.66 1.2>" # delayfeedback 0.33
 

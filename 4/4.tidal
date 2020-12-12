@@ -24,3 +24,7 @@ d1 $ sometimes (off 0.75 (|+ up 24)) $ slow 2 $ up (toScale minor ("[~ 4/4 ~, <~
 
 
 let day_4 = sometimes (off 0.75 (|+ up 24)) $ slow 2 $ up (toScale minor ("[~ 4/4 ~, <~ ~ 7 9 ~>] [<~ 0 ~ 0> 4/2] <0 0 ~>" + "<0 2 2 1>/2")) |* juxBy 0.5 rev (speed "[1 2]") #  s "[orgpho]" # coarse (slow 8 $ fmap round $ range 10 24 $ saw * saw) # delay 0.33 # delaytime "<0.33 0.33 0.33 <0.12 0.66>>" # delayfeedback 0.6 # orbit 1 # room 0.1 # size 0.9 # begin 0.01 # lpf (slow 8 $ range 500 2000 sine) # resonance 0.1 # sustain 1
+
+d1 $ day_4
+
+hush

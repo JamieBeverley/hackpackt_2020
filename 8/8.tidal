@@ -1,0 +1,26 @@
+
+
+d1 $ s "sawBass*2" # midinote "60 53" # portamento "1"
+
+
+hush
+
+d2 $ s"909bd:9*2" # gain "1"
+
+d3 $ gain "~ 1 ~ 1" # s "909hho:12" # gain "0.6" # legato 1
+
+d4 $ s "~ 909sn"  # n "4"
+
+d6 $ stutPat2 # s "909hhc" # gain 0.55
+
+d1 $ midinote "<41 _ 35 36>/2" # legato 1.2 # s "gran" # midichan 10 # orbit 1
+
+d7 $ dly 0.6 "1.2" 0.8 $ slow 4 $ up (toScale major ("<5 7> 3 0" + "<0 8>") ) # s "orgpho:2" # begin 0.1 # legato 0.5 # orbit 8 # gain 0.7
+
+d2 $ s "cr78:11*2"
+
+d2 $ silence
+
+d1 $ midinote "<47 48 40 _>/2" # legato 1.2 # s "gran" # midichan 10 # orbit 1
+
+hush
